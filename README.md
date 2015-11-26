@@ -4,3 +4,8 @@ Given text based dice to roll format, returns rolled results in slack compatible
 # References
 * I found this very useful for starting with js: http://nodeguide.com/beginner.html
 * Using: http://jasmine.github.io/2.3/node.html
+* Using: http://sinonjs.org
+
+# To consider:
+* https://github.com/froots/jasmine-sinon
+* Wallaby js

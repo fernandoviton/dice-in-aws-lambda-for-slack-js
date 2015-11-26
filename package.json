@@ -1,8 +1,9 @@
 {
   "devDependencies": {
     "jasmine" : "^2.3.2",
+    "sinon" : "^1.17.2"
   },
   "dependencies": {
-      "chance": "^0.8.0",
+    "chance": "^0.8.0"
   }
 }
