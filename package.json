@@ -1,4 +1,7 @@
 {
   "devDependencies": {
+  },
+  "dependencies": {
+      "chance": "^0.8.0",
   }
 }
