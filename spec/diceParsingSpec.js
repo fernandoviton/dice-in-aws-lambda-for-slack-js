@@ -23,4 +23,14 @@ describe("Dice parsing test suite", function() {
     expect(diceParsing.parseForGeneralDiceRoll("3d4+3")).toEqual(["3d4+3", 3, 4, 3]);
     expect(diceParsing.parseForGeneralDiceRoll("3d4 + 3")).toEqual(["3d4 + 3", 3, 4, 3]);
   });
+
+  it("text from dice parsing", function() {
+    expect(diceParsing.textFromParsedDiceRoll([null, 1, 2, 3])).toEqual("1d2+3");
+    expect(function() {diceParsing.textFromParsedDiceRoll([null, null, null])}).toThrow("Unexpected Input Length");
+  });
+
+  it("roundtrip of general dice parsing back to text", function () {
+    expect(diceParsing.textFromParsedDiceRoll(diceParsing.parseForGeneralDiceRoll("1d2+3"))).toEqual("1d2+3");
+    expect(diceParsing.textFromParsedDiceRoll(diceParsing.parseForGeneralDiceRoll("1d2 + 3"))).toEqual("1d2+3");
+  });
 });
