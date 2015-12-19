@@ -33,4 +33,16 @@ describe("Dice parsing test suite", function() {
     expect(diceParsing.textFromParsedDiceRoll(diceParsing.parseForGeneralDiceRoll("1d2+3"))).toEqual("1d2+3");
     expect(diceParsing.textFromParsedDiceRoll(diceParsing.parseForGeneralDiceRoll("1d2 + 3"))).toEqual("1d2+3");
   });
+
+  it ("Cthulhu specific parsing returns appropriate string", function() {
+    expect(diceParsing.parseForCthulhu("")).toBe(null);
+    expect(diceParsing.parseForCthulhu("blah")).toBe(null);
+    expect(diceParsing.parseForCthulhu("c")).toBe("ParseC_None");
+    expect(diceParsing.parseForCthulhu("c blah")).toBe(null);
+    expect(diceParsing.parseForCthulhu("c ")).toBe(null);
+    expect(diceParsing.parseForCthulhu("c p")).toBe("ParseC_Penalty");
+    expect(diceParsing.parseForCthulhu("c b")).toBe("ParseC_Bonus");
+    expect(diceParsing.parseForCthulhu("c p b")).toBe(null);
+    expect(diceParsing.parseForCthulhu("c pb")).toBe(null);
+  });
 });
