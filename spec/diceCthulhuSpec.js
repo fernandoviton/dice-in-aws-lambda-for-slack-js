@@ -39,6 +39,30 @@ describe("diceCthulhu.rollCheck", function() {
     expect(diceCthulhu.rollCheck(chanceMock, diceMock, ""))
       .toBe("rolled percentiles and got *12* (10, 2)");
   });
+  it("should roll and describe check where bonus die helps", function() {
+    returnPercentiles = [[50,6], [30, 9]];
+    expect(diceCthulhu.rollCheck(chanceMock, diceMock, "ParseC_Bonus"))
+      .toBe("rolled percentiles and got *36* (50, 6, bonus=30)");
+  });
+  it("should roll and describe check where bonus die doesn't help", function() {
+    returnPercentiles = [[40,9], [50, 6]];
+    expect(diceCthulhu.rollCheck(chanceMock, diceMock, "ParseC_Bonus"))
+      .toBe("rolled percentiles and got *49* (40, 9, bonus=50)");
+  });
+  it("should roll and describe check where penalty die hurts", function() {
+    returnPercentiles = [[30,6], [50, 9]];
+    expect(diceCthulhu.rollCheck(chanceMock, diceMock, "ParseC_Penalty"))
+      .toBe("rolled percentiles and got *56* (30, 6, penalty=50)");
+  });
+  it("should roll and describe check where penalty die doesn't hurt", function() {
+    returnPercentiles = [[50,9], [30, 6]];
+    expect(diceCthulhu.rollCheck(chanceMock, diceMock, "ParseC_Penalty"))
+      .toBe("rolled percentiles and got *59* (50, 9, penalty=30)");
+  });
+  it("should throw if unknown param is passed", function () {
+    expect(function() {diceCthulhu.rollCheck(chanceMock, diceMock, "blah")})
+      .toThrow(new Error("unknown rollData"));
+  });
 });
 
 /*
