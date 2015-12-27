@@ -15,15 +15,27 @@ var mock = function( constr, name ) {
 //var chanceMock = mock(Chance);
 
 describe("diceCthulhu.rollCheck", function() {
+  var returnPercentiles = [];
+  var nextPercentileToReturn = 0;
+  var diceMock = mock(dice);
+  var chanceMock = mock(chance);
+  diceMock.totalOfPercentilesRoll = function(rollData) {return dice.totalOfPercentilesRoll(rollData);};
+  diceMock.rollPercentiles = function(chance)
+  {
+    if (chance != chanceMock) throw "expected chance not passed";
+    var ret = returnPercentiles[nextPercentileToReturn];
+    nextPercentileToReturn += 1;
+    return ret;
+  };
+
+  beforeEach(function ()
+  {
+    returnPercentiles = [];
+    nextPercentileToReturn = 0;
+  });
+
   it("should roll and describe basic checks", function() {
-    var chanceMock = mock(chance);
-    var diceMock = mock(dice);
-    diceMock.rollPercentiles = function(chance)
-    {
-      if (chance != chanceMock) throw "expected chance not passed";
-      return [10,2];
-    };
-    diceMock.totalOfPercentilesRoll = function(rollData) {return dice.totalOfPercentilesRoll(rollData);};
+    returnPercentiles = [[10,2]];
     expect(diceCthulhu.rollCheck(chanceMock, diceMock, ""))
       .toBe("rolled percentiles and got *12* (10, 2)");
   });
