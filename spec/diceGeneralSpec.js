@@ -22,6 +22,11 @@ describe("rollDice", function() {
     expect(Dice.totalOfRoll([6, 7])).toEqual(13);
   });
 
+  it("getting total with addition", function() {
+    expect(Dice.totalOfRoll([6], 10)).toEqual(16);
+    expect(Dice.totalOfRoll([6], -10)).toEqual(-4);
+  });
+
   it("called with invalid input", function() {
     expect(function () {Dice.rollDice(null)}).toThrow("No Input Options");
     expect(function () {Dice.rollDice(null, {blah: 5})}).toThrow("No Input Sides");
