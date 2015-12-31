@@ -47,3 +47,20 @@ describe("Dice suite", function() {
     expect(Dice.rollDice({integer: function(options) {return 5;}}, {sides:8, numOfDice:4})).toEqual([5,5,5,5]);
   });
 });
+
+describe("getRollDataFromParsedRoll", function() {
+  it("of empty rollData returns null", function() {
+  });
+  it("of incomplete (invalid) rollData returns null", function() {
+    expect(Dice.getRollDataFromParsedRoll([])).toBe(null);
+    expect(Dice.getRollDataFromParsedRoll(["blah"])).toBe(null);
+    expect(Dice.getRollDataFromParsedRoll(["blah", 1])).toBe(null);
+  });
+  it("of incomplete (valid) values translates into appropriate structure", function() {
+    expect(Dice.getRollDataFromParsedRoll(["anything", 1, 2])).toEqual({numOfDice:1, sides:2, add:0});
+  });
+  it("of complete values translates into appropriate structure", function() {
+    expect(Dice.getRollDataFromParsedRoll(["anything", 1, 2, 3])).toEqual({numOfDice:1, sides:2, add:3});
+    expect(Dice.getRollDataFromParsedRoll(["anything", 0, 1, 5])).toEqual({numOfDice:0, sides:1, add:5});
+  });
+});
