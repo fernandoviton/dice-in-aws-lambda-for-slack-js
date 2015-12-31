@@ -63,6 +63,7 @@ describe("rollDice", function() {
 
 describe("getRollDataFromParsedRoll", function() {
   it("of incomplete (invalid) rollData returns null", function() {
+    expect(Dice.getRollDataFromParsedRoll(null)).toBe(null);
     expect(Dice.getRollDataFromParsedRoll([])).toBe(null);
     expect(Dice.getRollDataFromParsedRoll(["blah"])).toBe(null);
     expect(Dice.getRollDataFromParsedRoll(["blah", 1])).toBe(null);
@@ -73,5 +74,14 @@ describe("getRollDataFromParsedRoll", function() {
   it("of complete values translates into appropriate structure", function() {
     expect(Dice.getRollDataFromParsedRoll(["anything", 1, 2, 3])).toEqual({numOfDice:1, sides:2, add:3});
     expect(Dice.getRollDataFromParsedRoll(["anything", 0, 1, 5])).toEqual({numOfDice:0, sides:1, add:5});
+  });
+});
+
+describe("textFromRollData", function() {
+  it("text from dice parsing", function() {
+    expect(Dice.textFromRollData({numOfDice:1, sides:2, add:3})).toEqual("1d2+3");
+    expect(Dice.textFromRollData({sides:2, add:3})).toEqual("1d2+3");
+    expect(Dice.textFromRollData({sides:2})).toEqual("1d2");
+    expect(Dice.textFromRollData({blah:1})).toEqual("1d0");
   });
 });
