@@ -46,6 +46,12 @@ describe("Dice suite", function() {
     expect(Dice.rollDice({integer: function(options) {return 4;}}, {sides:6, numOfDice:3})).toEqual([4,4,4]);
     expect(Dice.rollDice({integer: function(options) {return 5;}}, {sides:8, numOfDice:4})).toEqual([5,5,5,5]);
   });
+
+  it("rollDice of zero sides and/or numOfDice", function() {
+    expect(Dice.rollDice({integer: function(options) {return 3;}}, {sides:0, numOfDice:1})).toEqual([]);
+    expect(Dice.rollDice({integer: function(options) {return 3;}}, {sides:0, numOfDice:0})).toEqual([]);
+    expect(Dice.rollDice({integer: function(options) {return 3;}}, {sides:1, numOfDice:0})).toEqual([]);
+  });
 });
 
 describe("getRollDataFromParsedRoll", function() {
