@@ -1,7 +1,11 @@
-var Dice = require('../lib/diceGeneral');
+var All = require('../lib/all.js');
 
-describe("A suite", function() {
-  it("contains spec with an expectation", function() {
-    expect(Dice.rollDice()).toBe(10);
+describe("handler", function() {
+  it("with 1d4", function() {
+    var doneFunc = (_, __) => {};
+    var errorFunc = (_, __) => {};
+    const result = All.handlerImpl('user', '1d4', doneFunc, errorFunc);
+    expect(result).toBeGreaterThan(0);
+    expect(result).toBeLessThan(5);
   });
 });
