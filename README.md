@@ -1,7 +1,7 @@
 # dice-in-aws-lambda-for-slack-js
 Given text based dice to roll format, returns rolled results in slack compatible format
 
-# Building locally (windows though commands should be similar elsewhere)
+# Building locally (on Windows - though is possible to build elsewhere)
 
 You will need to have npm installed and available to your shell: https://docs.npmjs.com/cli/v7/configuring-npm/install
 
