@@ -25,5 +25,13 @@ describe("handler", function() {
     const result = All.handlerImpl(roll, 'myUser', '1d4', doneFunc, errorFunc);
     expect(result.result.text).not.toBe(null);
   });
+  it("with 1d4", function() {
+    var responseData = null;  
+    const roll = All.rollFunc;
+    const doneFunc = (_, r) => { responseData = r; };
+    const errorFunc = (_, __) => {};
+    const result = All.handlerImpl(roll, 'myUser', '1d4', doneFunc, errorFunc);
+    expect(result.result.text).toBe('myUser rolled 1d4 and got *2*');
+  });
 });
 
