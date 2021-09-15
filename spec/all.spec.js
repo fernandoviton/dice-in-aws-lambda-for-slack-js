@@ -49,13 +49,37 @@ describe("handler", function() {
   //   const result = All.handlerImpl(roll, 'myUser', '1d4', doneFunc, errorFunc);
   //   expect(result.result.text).toBe('myUser rolled 1d4 and got *2*');
   // });
-  // it("with s", function() {
-  //   var responseData = null;  
-  //   const roll = All.rollFunc;
-  //   const doneFunc = (_, r) => { responseData = r; };
-  //   const errorFunc = (_, __) => {};
-  //   const result = All.handlerImpl(roll, 'myUser', 's 1d4', doneFunc, errorFunc);
-  //   expect(result.result.text).toBe('Savage');
-  // });
+  it("with s", function() {
+    var responseData = null;  
+    const roll = All.rollFunc;
+    const doneFunc = (_, r) => { responseData = r; };
+    const errorFunc = (_, __) => {};
+    const result = All.handlerImpl(roll, 'myUser', 's 1d4', doneFunc, errorFunc);
+    expect(result.result.text).toBe('Savage_Roll');
+  });
+  it("with s 2", function() {
+    var responseData = null;  
+    const roll = All.rollFunc;
+    const doneFunc = (_, r) => { responseData = r; };
+    const errorFunc = (_, __) => {};
+    const result = All.handlerImpl(roll, 'myUser', 's 1d4 1d6', doneFunc, errorFunc);
+    expect(result.result.text).toBe('Savage_Roll');
+  });
+  it("with s 3", function() {
+    var responseData = null;  
+    const roll = All.rollFunc;
+    const doneFunc = (_, r) => { responseData = r; };
+    const errorFunc = (_, __) => {};
+    const result = All.handlerImpl(roll, 'myUser', 's', doneFunc, errorFunc);
+    expect(result.result.text).toBe('Savage_Roll');
+  });
+  it("with s 4", function() {
+    var responseData = null;  
+    const roll = All.rollFunc;
+    const doneFunc = (_, r) => { responseData = r; };
+    const errorFunc = (_, __) => {};
+    const result = All.handlerImpl(roll, 'myUser', 's 15', doneFunc, errorFunc);
+    expect(result.result.text).toBe('Savage_Roll');
+  });
 });
 
