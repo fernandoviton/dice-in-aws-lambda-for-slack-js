@@ -102,7 +102,7 @@ describe("handler", function() {
     const roll = All.rollFunc;
     const doneFunc = (_, r) => { responseData = r; };
     const errorFunc = (_, __) => {};
-    const result = All.handlerImpl(roll, 'myUser', 's card', doneFunc, errorFunc);
+    const result = All.handlerImpl(roll, 'myUser', 'card', doneFunc, errorFunc);
     expect(result.result.text).toContain('drew');
   });
 });
