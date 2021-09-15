@@ -81,5 +81,29 @@ describe("handler", function() {
     const result = All.handlerImpl(roll, 'myUser', 's 1d4+2', doneFunc, errorFunc);
     expect(result.result.text).toContain('rolled');
   });
+  it("with s 6", function() {
+    var responseData = null;  
+    const roll = All.rollFunc;
+    const doneFunc = (_, r) => { responseData = r; };
+    const errorFunc = (_, __) => {};
+    const result = All.handlerImpl(roll, 'myUser', 's 1d4 w', doneFunc, errorFunc);
+    expect(result.result.text).toContain('rolled');
+  });
+  it("with s 7", function() {
+    var responseData = null;  
+    const roll = All.rollFunc;
+    const doneFunc = (_, r) => { responseData = r; };
+    const errorFunc = (_, __) => {};
+    const result = All.handlerImpl(roll, 'myUser', 's w', doneFunc, errorFunc);
+    expect(result.result.text).toContain('rolled');
+  });
+  it("with s 8", function() {
+    var responseData = null;  
+    const roll = All.rollFunc;
+    const doneFunc = (_, r) => { responseData = r; };
+    const errorFunc = (_, __) => {};
+    const result = All.handlerImpl(roll, 'myUser', 's card', doneFunc, errorFunc);
+    expect(result.result.text).toContain('drew');
+  });
 });
 
