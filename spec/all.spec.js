@@ -153,5 +153,13 @@ describe("handler", function() {
     const result = All.handlerImpl(roll, 'myUser', '1d4 1d6  1d8', doneFunc, errorFunc);
     expect(result.result.text).toContain('rolled');
   });
+  it("with s 1d1", function() {
+    var responseData = null;
+    const roll = All.rollFunc;
+    const doneFunc = (_, r) => { responseData = r; };
+    const errorFunc = (_, __) => {};
+    const result = All.handlerImpl(roll, 'myUser', 's 1d1', doneFunc, errorFunc);
+    expect(result.result.text).toContain('rolled');
+  });
 });
 
