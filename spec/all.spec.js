@@ -46,7 +46,7 @@ describe("handler", function() {
     const roll = All.rollFunc;
     const doneFunc = (_, r) => { responseData = r; };
     const errorFunc = (_, __) => {};
-    const result = All.handlerImpl(roll, 'myUser', 's 1d4', doneFunc, errorFunc);
+    const result = All.handlerImpl(roll, 'myUser', 's d4', doneFunc, errorFunc);
     expect(result.result.text).toContain('rolled');
   });
   it("with s 1d4 1d6", function() {
